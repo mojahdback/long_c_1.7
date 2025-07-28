@@ -24,7 +24,7 @@ int main()
               count++;
               frq[j]=0;
           }
-        } 
+      } 
        
         if(frq[i]!= 0){
             frq[i]=count;
