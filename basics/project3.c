@@ -90,6 +90,8 @@ int main(){
         
         switch(choix){
             
+            case 0 : printf("\n\tThanks for useing my system!\n");
+                     break;
             case 1 : printf("\n================= Start ====================\n");
                      data(stdns,count);
                      printf("\n================= Done! ====================\n");
