@@ -11,45 +11,45 @@ typedef struct {
 }student;
         student stdns[100];
         int count = 0;
-void data(student *p){
+void data(student *p,int size){
   
-    int sum;
+   
     printf("\nHow Maney students do want to add : ");
-    scanf("%d",&sum);
+    scanf("%d",&size);
     int i;
-    for(i=0;i<sum;i++){
+    for(i=0;i<size;i++){
         printf("Enter this Informations :\n");
         printf("\t\tName : ");
         getchar();
-        fgets(p->name,50,stdin);
+        fgets(p[i].name,50,stdin);
         printf("\t\tAge : ");
-        scanf("%d",&p->age);
+        scanf("%d",&p[i].age);
         printf("\t\tCountry : ");
         getchar();
-        fgets(p->country,50,stdin);
+        fgets(p[i].country,50,stdin);
         printf("\t\tGrade : ");
-        scanf("%f",&p->grade);
+        scanf("%f",&p[i].grade);
         count++;
     }
 }
-void print(void){
+void print(student S[],int size){
     int i;
-    for(i=0;i<count;i++){
+    for(i=0;i<size;i++){
         printf("\nPerson %d:\n",i+1);
         printf("\n\tYour name -> %s\tYour age -> %d\n\tYour country -> %s\tGet -> %.2f\n",
-        stdns[i].name,stdns[i].age,stdns[i].country,stdns[i].grade);
+        S[i].name,S[i].age,S[i].country,S[i].grade);
     }
     
 }
-student search(){
+void search(student *S,int size){
    char a[50];
     int found = 0;
     printf("enter searching name");
     getchar();
     fgets(a,50,stdin);
     int i;
-    for(i=0;i<count;i++){
-        if(strcmp(stdns[i].name,a)==0)
+    for(i=0;i<size;i++){
+        if(strcmp(S[i].name,a)==0)
            found = 1;
            
     }
@@ -57,6 +57,20 @@ student search(){
       printf("\n\t==> There is here ! <==\n");
     else
       printf("\n\t==> Not here ! <==\n");
+}
+void sorting(student *S,int size){
+    student temp;
+    int i,j;
+    for(i=0;i<size-1;i++){
+        for(j=0;j<size-1-i;j++){
+            if(S[j].grade < S[j+1].grade){
+                temp = S[j];
+                S[j]=S[j+1];
+                S[j+1]= temp;
+            }
+        }
+        
+    }
 }
 
 int main(){
@@ -77,18 +91,36 @@ int main(){
         switch(choix){
             
             case 1 : printf("\n================= Start ====================\n");
-                     data(stdns);
+                     data(stdns,count);
                      printf("\n================= Done! ====================\n");
                      break;
             case 2 : printf("\n================= Start ====================\n"); 
-                     print();
+                     print(stdns,count);
                      printf("\n================= Done! ====================\n");
                      break;
             case 3 : printf("\n================= Start ====================\n"); 
-                     search();
+                     search(stdns,count);
                      printf("\n================= Done! ====================\n");
                      break;
-        }
+                     
+            case 4 : printf("\n================= Start ====================\n"); 
+                     //function of modiffy
+                     printf("\n================= Done! ====================\n");
+                     break;
+            
+            case 5 : printf("\n================= Start ====================\n"); 
+                     //function of delete
+                     printf("\n================= Done! ====================\n");
+                     break;
+            
+            case 6 : printf("\n================= Start ====================\n");
+                     sorting(stdns,count);
+                     print(stdns,count);
+                     printf("\n================= Done! ====================\n");
+                     break;
+            default : printf("\nPlease Entre Number Between 1 -> 6 OR 0 TO Skip!\n ");
+                        break;
+        }   
         
         
     }while(choix != 0);
