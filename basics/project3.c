@@ -72,7 +72,67 @@ void sorting(student *S,int size){
         
     }
 }
+void modify(student *S,int count){
+    int n;
+    int i;
+    printf("\nCode of student : ");
+    scanf("%d",&n);
+    int found = 1;
+    for(i=0;i<count;i++){
+        if(n != S[i].age ){
+            found =-1;
+            continue;
+        } 
+        if(n == S[i].age){
+            found=1;
+            printf("\n\tName: ");
+            scanf(" %[^\n]",S[i].name);
+    
+            printf("\n\tAge: ");
+            scanf("%d",&S[i].age);
+            
+             printf("\n\tCountry: ");
+            scanf(" %[^\n]",S[i].country);
+    
+            printf("\n\tgrade: ");
+            scanf("%f",&S[i].grade);
+             break;
+          
+        }      
+    }
+    
+    if(found==1){
+        stdns[count++];
+    }
+    else
+      printf("\nThere is no syudents have this code %d\n",n);
 
+
+}
+
+    
+void delete (student *S,int count){
+    char del_name[30];
+    int found =0;
+    printf("\nEnter Student name: ");
+    scanf(" %[^\n]",del_name);
+    int i,j;
+    for(i=0;i<count;i++){
+        if(strcmp(S[i].name,del_name)==0){
+            for(j=i;j<count - 1 ;j++){
+                S[j] = S[j + 1];
+                
+            }
+            count--;
+            found=1;
+            printf("\n\tStudent Delelte \n");
+            break;
+        }
+    }
+    if(!found)
+       printf("\n\tStudent not found!\n");
+    
+}
 int main(){
       int choix;
     do{
@@ -106,12 +166,12 @@ int main(){
                      break;
                      
             case 4 : printf("\n================= Start ====================\n"); 
-                     //function of modiffy
+                     modify(stdns,count);
                      printf("\n================= Done! ====================\n");
                      break;
             
             case 5 : printf("\n================= Start ====================\n"); 
-                     //function of delete
+                     delete(stdns,count);
                      printf("\n================= Done! ====================\n");
                      break;
             
