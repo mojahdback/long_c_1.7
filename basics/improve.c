@@ -12,7 +12,6 @@ typedef struct{
 
 void add(student stdns[],int size,int *count){
    
-   
     for(int i=0;i<size;i++){
         printf("\nSTUDENT %d:\n",i+1);
         printf("\t\tCODE : ");
@@ -162,23 +161,113 @@ void sorting(student stdns[] , int count){
     }
 }
 
+void insert(student stdns[],int *count){
+    int pos;
+    printf("\tPOSition :");
+    scanf("%d",&pos);
+    
+    if(pos < 0 || pos > *count)
+       printf("\nThis position not efacive!\n");
+       
+    else
+    {
+        for(int i = *count;i>pos;i--){
+            stdns[i] = stdns[i - 1];
+        }
+    
+        
+        printf("\n ADD A NEW STUDENT :\n");
+        printf("\t\tCODE : ");
+        scanf("%d",&stdns[pos].code);
+        getchar();
+        printf("\t\tNAME : ");
+        fgets(stdns[pos].name,30,stdin);
+    
+        printf("\t\tAGE : ");
+        scanf("%d",&stdns[pos].age);
+    
+        printf("\t\tGRADE : ");
+        scanf("%f",&stdns[pos].grade);
+        getchar();
+        printf("\t\tTYPE : ");
+        fgets(stdns[pos].type,30,stdin);
+            (*count)++;
+    }
+}
+
 
 int main()
 {
     student stdns[100];
     int count =0;
-     int size;
-    
-    printf("\nHow much students do you want to enter : ");
-    scanf("%d",&size);
-    
-    add(stdns,size,&count);
-    //display(stdns,count);
-    //search(stdns,count);
-   // modify(stdns,count);
-   //delete(stdns,&count);
-    sorting(stdns,count);
-    display(stdns,count);
+    int size;
+    int choix;
+    do{
+        printf("\n\t========= Student Management Menu =========\n");
+        printf("\t\t1 : Add students\n");
+        printf("\t\t2 : Display students\n");
+        printf("\t\t3 : search student\n");
+        printf("\t\t4 : Modify student\n");
+        printf("\t\t5 : Insert student\n");
+        printf("\t\t6 : Delete student\n");
+        printf("\t\t7 : sort student\n");
+        printf("\t\t0 : Exit\n");
+        
+        printf("\nEnter your choice: ");
+        scanf("%d",&choix);
+        
+        switch(choix){
+            
+            case 0 : printf("\tThanks for useing  our program!\n");
+                     break;
+                     
+            case 1 : printf("\nHow much students do you want to enter : ");
+                     scanf("%d",&size);
+                     printf("\n****************** START *****************\n");
+                     add(stdns,size,&count);
+                     printf("\n==================  DONE =================\n");
+                     break;
+                     
+            case 2 : printf("\n****************** START *****************\n");
+                     display(stdns,count);
+                     printf("\n==================  DONE =================\n");
+                     break;
+            
+            case 3 : printf("\n****************** START *****************\n");
+                     search(stdns,count);
+                     printf("\n==================  DONE =================\n");
+                     break;
+            
+            case 4 : printf("\n****************** START *****************\n");
+                     modify(stdns,count);
+                     printf("\n==================  DONE =================\n");
+                     break;
+            
+            case 5 : printf("\n****************** START *****************\n");
+                     insert(stdns,&count);
+                     printf("\n==================  DONE =================\n");
+                     break;
+            
+            case 6 : printf("\n****************** START *****************\n");
+                     delete(stdns,&count);
+                     printf("\n==================  DONE =================\n");
+                     break;
+            
+            case 7 : printf("\n****************** START *****************\n");
+                     sorting(stdns,count);
+                     printf("\n==================  DONE =================\n");
+                     break;
+            
+            default : printf("\nPlease Enter number beteween 1 to 7 !!!\n");
+                      break;
+            
+        }
+        
+        
+        
+        
+    }while(choix != 0 );
+  
 
     return 0;
 }
