@@ -11,8 +11,8 @@ typedef struct {
 }student;
         student stdns[100];
         int count = 0;
-void data(student *p,int size){
-  
+void data(){
+    int size;
    
     printf("\nHow Maney students do want to add : ");
     scanf("%d",&size);
@@ -21,35 +21,35 @@ void data(student *p,int size){
         printf("Enter this Informations :\n");
         printf("\t\tName : ");
         getchar();
-        fgets(p[i].name,50,stdin);
+        fgets(stdns[i].name,50,stdin);
         printf("\t\tAge : ");
-        scanf("%d",&p[i].age);
+        scanf("%d",&stdns[i].age);
         printf("\t\tCountry : ");
         getchar();
-        fgets(p[i].country,50,stdin);
+        fgets(stdns[i].country,50,stdin);
         printf("\t\tGrade : ");
-        scanf("%f",&p[i].grade);
+        scanf("%f",&stdns[i].grade);
         count++;
     }
 }
-void print(student S[],int size){
+void print(){
     int i;
-    for(i=0;i<size;i++){
+    for(i=0;i<count;i++){
         printf("\nPerson %d:\n",i+1);
         printf("\n\tYour name -> %s\tYour age -> %d\n\tYour country -> %s\tGet -> %.2f\n",
-        S[i].name,S[i].age,S[i].country,S[i].grade);
+        stdns[i].name,stdns[i].age,stdns[i].country,stdns[i].grade);
     }
     
 }
-void search(student *S,int size){
+void search(){
    char a[50];
     int found = 0;
     printf("enter searching name");
     getchar();
     fgets(a,50,stdin);
     int i;
-    for(i=0;i<size;i++){
-        if(strcmp(S[i].name,a)==0)
+    for(i=0;i<count;i++){
+        if(strcmp(stdns[i].name,a)==0)
            found = 1;
            
     }
@@ -58,73 +58,67 @@ void search(student *S,int size){
     else
       printf("\n\t==> Not here ! <==\n");
 }
-void sorting(student *S,int size){
+void sorting(){
     student temp;
     int i,j;
-    for(i=0;i<size-1;i++){
-        for(j=0;j<size-1-i;j++){
-            if(S[j].grade < S[j+1].grade){
-                temp = S[j];
-                S[j]=S[j+1];
-                S[j+1]= temp;
+    for(i=0;i<count-1;i++){
+        for(j=0;j<count-1-i;j++){
+            if(stdns[j].grade < stdns[j+1].grade){
+                temp = stdns[j];
+                stdns[j]=stdns[j+1];
+                stdns[j+1]= temp;
             }
         }
         
     }
 }
-void modify(student *S,int count){
+void modify(){
     int n;
     int i;
     printf("\nCode of student : ");
     scanf("%d",&n);
-    int found = 1;
+    int found = 0;
     for(i=0;i<count;i++){
-        if(n != S[i].age ){
-            found =-1;
-            continue;
-        } 
-        if(n == S[i].age){
-            found=1;
+        if(n == stdns[i].age ){
+            found =1;
             printf("\n\tName: ");
-            scanf(" %[^\n]",S[i].name);
-    
+            scanf(" %[^\n]",stdns[i].name);
+            
             printf("\n\tAge: ");
-            scanf("%d",&S[i].age);
+            getchar();
+            scanf("%d",&stdns[i].age);
             
              printf("\n\tCountry: ");
-            scanf(" %[^\n]",S[i].country);
+            scanf(" %[^\n]",stdns[i].country);
     
             printf("\n\tgrade: ");
-            scanf("%f",&S[i].grade);
+            getchar();
+            scanf("%f",&stdns[i].grade);
              break;
           
         }      
     }
     
-    if(found==1){
-        stdns[count++];
-    }
-    else
+    if(!found)
       printf("\nThere is no syudents have this code %d\n",n);
 
 
 }
 
     
-void delete (student *S,int count){
+void delete (){
     char del_name[30];
     int found =0;
     printf("\nEnter Student name: ");
     scanf(" %[^\n]",del_name);
     int i,j;
     for(i=0;i<count;i++){
-        if(strcmp(S[i].name,del_name)==0){
+        if(strcmp(stdns[i].name,del_name)==0){
+            found=1;
             for(j=i;j<count - 1 ;j++){
-                S[j] = S[j + 1];
-                
+                stdns[j] = stdns[j + 1];
             }
             count--;
-            found=1;
             printf("\n\tStudent Delelte \n");
             break;
         }

@@ -202,7 +202,10 @@ int main()
     int count =0;
     int size;
     int choix;
+
+
     do{
+
         printf("\n\t========= Student Management Menu =========\n");
         printf("\t\t1 : Add students\n");
         printf("\t\t2 : Display students\n");
@@ -217,7 +220,8 @@ int main()
         scanf("%d",&choix);
         
         switch(choix){
-            
+
+                         
             case 0 : printf("\tThanks for useing  our program!\n");
                      break;
                      
@@ -227,7 +231,7 @@ int main()
                      add(stdns,size,&count);
                      printf("\n==================  DONE =================\n");
                      break;
-                     
+
             case 2 : printf("\n****************** START *****************\n");
                      display(stdns,count);
                      printf("\n==================  DONE =================\n");
@@ -237,7 +241,7 @@ int main()
                      search(stdns,count);
                      printf("\n==================  DONE =================\n");
                      break;
-            
+
             case 4 : printf("\n****************** START *****************\n");
                      modify(stdns,count);
                      printf("\n==================  DONE =================\n");
@@ -262,7 +266,6 @@ int main()
                       break;
             
         }
-        
         
         
         
