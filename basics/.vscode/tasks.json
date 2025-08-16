@@ -1,0 +1,31 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "C/C++: gcc.exe build active file",
+      "command": "gcc",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}",
+        "shell": {
+          "executable": "cmd.exe",
+          "args": [
+            "/c",
+            "taskkill /f /im ${fileBasenameNoExtension}.exe >nul 2>&1 && gcc ${file} -o \"${fileDirname}\\${fileBasenameNoExtension}.exe\""
+          ]
+        }
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "detail": "Automatically closes the running EXE before recompiling."
+    }
+  ]
+}

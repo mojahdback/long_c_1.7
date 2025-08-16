@@ -1,0 +1,5 @@
+{
+    "code-runner.executorMap": {
+        "c": "taskkill /f /im ${fileBasenameNoExtension}.exe >nul 2>&1 & gcc \"$fullFileName\" -o \"$fileBaseName.exe\" && \"${fileBaseName}.exe\""
+    }
+}
