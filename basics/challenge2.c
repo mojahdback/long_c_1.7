@@ -6,7 +6,6 @@ int main()
     char M[20];
     char R[20];
     int i,j;
-    
     printf("enteer a word :");
     scanf("%s",M);
     
